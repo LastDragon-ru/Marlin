@@ -290,7 +290,7 @@
 #define E5_AUTO_FAN_PIN -1
 #define CHAMBER_AUTO_FAN_PIN -1
 #define EXTRUDER_AUTO_FAN_TEMPERATURE 50
-#define EXTRUDER_AUTO_FAN_SPEED 255   // 255 == full speed
+#define EXTRUDER_AUTO_FAN_SPEED 225   // 255 == full speed
 
 /**
  * Part-Cooling Fan Multiplexer
@@ -1450,83 +1450,85 @@
 
   #define HOLD_MULTIPLIER    0.5  // Scales down the holding current from run current
   #define INTERPOLATE       true  // Interpolate X/Y/Z_MICROSTEPS to 256
+  #define DEFAULT_CURRENT   1000  // (mA) RMS current. Multiply by 1.414 for peak current.
+  #define DEFAULT_RSENSE    0.11
 
   #if AXIS_IS_TMC(X)
-    #define X_CURRENT     800  // (mA) RMS current. Multiply by 1.414 for peak current.
-    #define X_MICROSTEPS   16  // 0..256
-    #define X_RSENSE     0.11
+    #define X_CURRENT     DEFAULT_CURRENT  
+    #define X_MICROSTEPS  DEFAULT_MICROSTEPS  // 0..256
+    #define X_RSENSE      DEFAULT_RSENSE
   #endif
 
   #if AXIS_IS_TMC(X2)
-    #define X2_CURRENT    800
-    #define X2_MICROSTEPS  16
-    #define X2_RSENSE    0.11
+    #define X2_CURRENT    DEFAULT_CURRENT
+    #define X2_MICROSTEPS DEFAULT_MICROSTEPS
+    #define X2_RSENSE     DEFAULT_RSENSE
   #endif
 
   #if AXIS_IS_TMC(Y)
-    #define Y_CURRENT     800
-    #define Y_MICROSTEPS   16
-    #define Y_RSENSE     0.11
+    #define Y_CURRENT     DEFAULT_CURRENT
+    #define Y_MICROSTEPS  DEFAULT_MICROSTEPS
+    #define Y_RSENSE      DEFAULT_RSENSE
   #endif
 
   #if AXIS_IS_TMC(Y2)
-    #define Y2_CURRENT    800
-    #define Y2_MICROSTEPS  16
-    #define Y2_RSENSE    0.11
+    #define Y2_CURRENT    DEFAULT_CURRENT
+    #define Y2_MICROSTEPS DEFAULT_MICROSTEPS
+    #define Y2_RSENSE     DEFAULT_RSENSE
   #endif
 
   #if AXIS_IS_TMC(Z)
-    #define Z_CURRENT     800
-    #define Z_MICROSTEPS   16
-    #define Z_RSENSE     0.11
+    #define Z_CURRENT     DEFAULT_CURRENT
+    #define Z_MICROSTEPS  DEFAULT_MICROSTEPS
+    #define Z_RSENSE      DEFAULT_RSENSE
   #endif
 
   #if AXIS_IS_TMC(Z2)
-    #define Z2_CURRENT    800
-    #define Z2_MICROSTEPS  16
-    #define Z2_RSENSE    0.11
+    #define Z2_CURRENT    DEFAULT_CURRENT
+    #define Z2_MICROSTEPS DEFAULT_MICROSTEPS
+    #define Z2_RSENSE     DEFAULT_RSENSE
   #endif
 
   #if AXIS_IS_TMC(Z3)
-    #define Z3_CURRENT    800
-    #define Z3_MICROSTEPS  16
-    #define Z3_RSENSE    0.11
+    #define Z3_CURRENT    DEFAULT_CURRENT
+    #define Z3_MICROSTEPS DEFAULT_MICROSTEPS
+    #define Z3_RSENSE     DEFAULT_RSENSE
   #endif
 
   #if AXIS_IS_TMC(E0)
-    #define E0_CURRENT    800
-    #define E0_MICROSTEPS  16
-    #define E0_RSENSE    0.11
+    #define E0_CURRENT    DEFAULT_CURRENT
+    #define E0_MICROSTEPS DEFAULT_MICROSTEPS
+    #define E0_RSENSE     DEFAULT_RSENSE
   #endif
 
   #if AXIS_IS_TMC(E1)
-    #define E1_CURRENT    800
-    #define E1_MICROSTEPS  16
-    #define E1_RSENSE    0.11
+    #define E1_CURRENT    DEFAULT_CURRENT
+    #define E1_MICROSTEPS DEFAULT_MICROSTEPS
+    #define E1_RSENSE     DEFAULT_RSENSE
   #endif
 
   #if AXIS_IS_TMC(E2)
-    #define E2_CURRENT    800
-    #define E2_MICROSTEPS  16
-    #define E2_RSENSE    0.11
+    #define E2_CURRENT    DEFAULT_CURRENT
+    #define E2_MICROSTEPS DEFAULT_MICROSTEPS
+    #define E2_RSENSE     DEFAULT_RSENSE
   #endif
 
   #if AXIS_IS_TMC(E3)
-    #define E3_CURRENT    800
-    #define E3_MICROSTEPS  16
-    #define E3_RSENSE    0.11
+    #define E3_CURRENT    DEFAULT_CURRENT
+    #define E3_MICROSTEPS DEFAULT_MICROSTEPS
+    #define E3_RSENSE     DEFAULT_RSENSE
   #endif
 
   #if AXIS_IS_TMC(E4)
-    #define E4_CURRENT    800
-    #define E4_MICROSTEPS  16
-    #define E4_RSENSE    0.11
+    #define E4_CURRENT    DEFAULT_CURRENT
+    #define E4_MICROSTEPS DEFAULT_MICROSTEPS
+    #define E4_RSENSE     DEFAULT_RSENSE
   #endif
 
   #if AXIS_IS_TMC(E5)
-    #define E5_CURRENT    800
-    #define E5_MICROSTEPS  16
-    #define E5_RSENSE    0.11
+    #define E5_CURRENT    DEFAULT_CURRENT
+    #define E5_MICROSTEPS DEFAULT_MICROSTEPS
+    #define E5_RSENSE     DEFAULT_RSENSE
   #endif
 
   /**
@@ -1617,21 +1619,22 @@
    * STEALTHCHOP_(XY|Z|E) must be enabled to use HYBRID_THRESHOLD.
    * M913 X/Y/Z/E to live tune the setting
    */
-  //#define HYBRID_THRESHOLD
+  #define HYBRID_THRESHOLD
+  #define DEFAULT_HYBRID_THRESHOLD 125
 
-  #define X_HYBRID_THRESHOLD     100  // [mm/s]
-  #define X2_HYBRID_THRESHOLD    100
-  #define Y_HYBRID_THRESHOLD     100
-  #define Y2_HYBRID_THRESHOLD    100
-  #define Z_HYBRID_THRESHOLD       3
-  #define Z2_HYBRID_THRESHOLD      3
-  #define Z3_HYBRID_THRESHOLD      3
-  #define E0_HYBRID_THRESHOLD     30
-  #define E1_HYBRID_THRESHOLD     30
-  #define E2_HYBRID_THRESHOLD     30
-  #define E3_HYBRID_THRESHOLD     30
-  #define E4_HYBRID_THRESHOLD     30
-  #define E5_HYBRID_THRESHOLD     30
+  #define X_HYBRID_THRESHOLD      DEFAULT_HYBRID_THRESHOLD  // [mm/s]
+  #define X2_HYBRID_THRESHOLD     DEFAULT_HYBRID_THRESHOLD
+  #define Y_HYBRID_THRESHOLD      DEFAULT_HYBRID_THRESHOLD
+  #define Y2_HYBRID_THRESHOLD     DEFAULT_HYBRID_THRESHOLD
+  #define Z_HYBRID_THRESHOLD      DEFAULT_HYBRID_THRESHOLD
+  #define Z2_HYBRID_THRESHOLD     DEFAULT_HYBRID_THRESHOLD
+  #define Z3_HYBRID_THRESHOLD     DEFAULT_HYBRID_THRESHOLD
+  #define E0_HYBRID_THRESHOLD     DEFAULT_HYBRID_THRESHOLD
+  #define E1_HYBRID_THRESHOLD     DEFAULT_HYBRID_THRESHOLD
+  #define E2_HYBRID_THRESHOLD     DEFAULT_HYBRID_THRESHOLD
+  #define E3_HYBRID_THRESHOLD     DEFAULT_HYBRID_THRESHOLD
+  #define E4_HYBRID_THRESHOLD     DEFAULT_HYBRID_THRESHOLD
+  #define E5_HYBRID_THRESHOLD     DEFAULT_HYBRID_THRESHOLD
 
   /**
    * TMC2130, TMC2160, TMC2660, TMC5130, and TMC5160 only

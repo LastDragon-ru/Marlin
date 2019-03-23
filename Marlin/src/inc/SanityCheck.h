@@ -1813,7 +1813,7 @@ static_assert(Y_MAX_LENGTH >= Y_BED_SIZE, "Movement bounds (Y_MIN_POS, Y_MAX_POS
 /**
  * Check existing RX/TX pins against enable TMC UART drivers.
  */
-#define INVALID_TMC2208(ST) (AXIS_DRIVER_TYPE(ST, TMC2208) && !(defined(ST##_HARDWARE_SERIAL) || (PIN_EXISTS(ST##_SERIAL_RX, ST##_SERIAL_TX))))
+#define INVALID_TMC2208(ST) (AXIS_DRIVER_TYPE(ST, TMC2208) && !(defined(ST##_HARDWARE_SERIAL) || (PIN_EXISTS(ST##_SERIAL_TX))))
 #if INVALID_TMC2208(X)
   #error "TMC2208 on X requires X_HARDWARE_SERIAL or X_SERIAL_(RX|TX)_PIN."
 #elif INVALID_TMC2208(X2)

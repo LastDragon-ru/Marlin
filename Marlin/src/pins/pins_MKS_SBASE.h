@@ -285,14 +285,14 @@
   // The shortage of pins becomes apparent.
   // Worst case you may have to give up the LCD
   // RX pins need to be interrupt capable
-  #define X_SERIAL_TX_PIN  P1_22   // J8-2
-  #define X_SERIAL_RX_PIN  P2_12   // J8-4 Interrupt Capable
-  #define Y_SERIAL_TX_PIN  P1_23   // J8-3
-  #define Y_SERIAL_RX_PIN  P2_11   // J8-5 Interrupt Capable
-  #define Z_SERIAL_TX_PIN  P2_12   // J8-4
-  #define Z_SERIAL_RX_PIN  P0_25   // TH3
-  #define E0_SERIAL_TX_PIN P4_28   // J8-6
-  #define E0_SERIAL_RX_PIN P0_26   // TH4
+  #define X_SERIAL_TX_PIN  P0_15   // P1_22   // J8-2
+  #define X_SERIAL_RX_PIN  P_NC    // P2_12   // J8-4 Interrupt Capable
+  #define Y_SERIAL_TX_PIN  P_NC    // P1_23   // J8-3
+  #define Y_SERIAL_RX_PIN  P_NC    // P2_11   // J8-5 Interrupt Capable
+  #define Z_SERIAL_TX_PIN  P_NC    // P2_12   // J8-4
+  #define Z_SERIAL_RX_PIN  P_NC    // P0_25   // TH3
+  #define E0_SERIAL_TX_PIN P_NC    // P4_28   // J8-6
+  #define E0_SERIAL_RX_PIN P_NC    // P0_26   // TH4
 #endif
 
 // UNUSED
