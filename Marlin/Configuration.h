@@ -597,7 +597,7 @@
   // Make delta curves from many straight lines (linear interpolation).
   // This is a trade-off between visible corners (not enough segments)
   // and processor overload (too many expensive sqrt calls).
-  #define DELTA_SEGMENTS_PER_SECOND 200
+  #define DELTA_SEGMENTS_PER_SECOND 800
 
   // After homing move down to a height where XY movement is unconstrained
   //#define DELTA_HOME_TO_SAFE_ZONE
@@ -631,7 +631,7 @@
   #define DELTA_DIAGONAL_ROD 397.19       // (mm)
 
   // Distance between bed and nozzle Z home position
-  #define DELTA_HEIGHT 521.75             // (mm) Get this value from G33 auto calibrate
+  #define DELTA_HEIGHT 525.00             // (mm) Get this value from G33 auto calibrate
 
   #define DELTA_ENDSTOP_ADJ { -1.97, +0.00, -2.28 } // Get these values from G33 auto calibrate
 
@@ -782,7 +782,7 @@
 #define XYZ_STEPS_PER_UNIT            ((XYZ_FULL_STEPS_PER_ROTATION) * (XYZ_MICROSTEPS) / double(XYZ_BELT_PITCH) / double(XYZ_PULLEY_TEETH))
 
 // Delta speeds must be the same on xyz
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { XYZ_STEPS_PER_UNIT, XYZ_STEPS_PER_UNIT, XYZ_STEPS_PER_UNIT, 800 * DEFAULT_MICROSTEPS / 32  }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { XYZ_STEPS_PER_UNIT, XYZ_STEPS_PER_UNIT, XYZ_STEPS_PER_UNIT, 837 * DEFAULT_MICROSTEPS / 32  }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -797,7 +797,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4[, E5]]]]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 4000, 4000, 4000, 10000 }
+#define DEFAULT_MAX_ACCELERATION      { 4000, 4000, 4000, 4000 }
 
 /**
  * Default Acceleration (change/s) change = mm/s
