@@ -774,15 +774,17 @@
  */
 // Variables to calculate steps
 
-#define DEFAULT_MICROSTEPS            32
+#define DEFAULT_MICROSTEPS_XYZ        32
+#define DEFAULT_MICROSTEPS_E          16
 #define XYZ_FULL_STEPS_PER_ROTATION   200
-#define XYZ_MICROSTEPS                DEFAULT_MICROSTEPS
+#define XYZ_MICROSTEPS                DEFAULT_MICROSTEPS_XYZ
 #define XYZ_BELT_PITCH                2
 #define XYZ_PULLEY_TEETH              20
 #define XYZ_STEPS_PER_UNIT            ((XYZ_FULL_STEPS_PER_ROTATION) * (XYZ_MICROSTEPS) / double(XYZ_BELT_PITCH) / double(XYZ_PULLEY_TEETH))
+#define E_STEPS_PER_UNIT              837 * DEFAULT_MICROSTEPS_E / 32
 
 // Delta speeds must be the same on xyz
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { XYZ_STEPS_PER_UNIT, XYZ_STEPS_PER_UNIT, XYZ_STEPS_PER_UNIT, 837 * DEFAULT_MICROSTEPS / 32  }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { XYZ_STEPS_PER_UNIT, XYZ_STEPS_PER_UNIT, XYZ_STEPS_PER_UNIT, E_STEPS_PER_UNIT }
 
 /**
  * Default Max Feed Rate (mm/s)
