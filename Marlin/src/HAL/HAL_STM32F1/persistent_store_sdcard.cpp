@@ -28,7 +28,7 @@
 
 #include "../../inc/MarlinConfig.h"
 
-#if ENABLED(EEPROM_SETTINGS) && DISABLED(FLASH_EEPROM_EMULATION)
+#if ENABLED(EEPROM_SETTINGS) && NONE(FLASH_EEPROM_EMULATION, SPI_EEPROM, I2C_EEPROM)
 
 #include "../shared/persistent_store_api.h"
 
@@ -43,26 +43,32 @@ static char HAL_STM32F1_eeprom_content[HAL_STM32F1_EEPROM_SIZE];
 
   #include "../../sd/cardreader.h"
 
-  static const char eeprom_filename[] = "eeprom.dat";
+  #define EEPROM_FILENAME "eeprom.dat"
 
   bool PersistentStore::access_start() {
     if (!card.isDetected()) return false;
-    int16_t bytes_read = 0;
-    constexpr char eeprom_zero = 0xFF;
-    card.openFile(eeprom_filename, true);
-    bytes_read = card.read(HAL_STM32F1_eeprom_content, HAL_STM32F1_EEPROM_SIZE);
+
+    SdFile file, root = card.getroot();
+    if (!file.open(&root, EEPROM_FILENAME, O_RDONLY))
+      return false;
+
+    int16_t bytes_read = file.read(HAL_STM32F1_eeprom_content, HAL_STM32F1_EEPROM_SIZE);
     if (bytes_read < 0) return false;
     for (; bytes_read < HAL_STM32F1_EEPROM_SIZE; bytes_read++)
-      HAL_STM32F1_eeprom_content[bytes_read] = eeprom_zero;
-    card.closefile();
+      HAL_STM32F1_eeprom_content[bytes_read] = 0xFF;
+    file.close();
     return true;
   }
 
   bool PersistentStore::access_finish() {
     if (!card.isDetected()) return false;
-    card.openFile(eeprom_filename, false);
-    int16_t bytes_written = card.write(HAL_STM32F1_eeprom_content, HAL_STM32F1_EEPROM_SIZE);
-    card.closefile();
+
+    SdFile file, root = card.getroot();
+    int16_t bytes_written = 0;
+    if (file.open(&root, EEPROM_FILENAME, O_CREAT | O_WRITE | O_TRUNC)) {
+      bytes_written = file.write(HAL_STM32F1_eeprom_content, HAL_STM32F1_EEPROM_SIZE);
+      file.close();
+    }
     return (bytes_written == HAL_STM32F1_EEPROM_SIZE);
   }
 

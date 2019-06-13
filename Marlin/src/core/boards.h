@@ -86,10 +86,12 @@
 #define BOARD_TRIGORILLA_14     443   // TriGorilla Anycubic version 1.4 based on RAMPS EFB
 #define BOARD_RAMPS_ENDER_4     243   // Creality: Ender-4, CR-8
 #define BOARD_RAMPS_CREALITY    244   // Creality: CR10S, CR20, CR-X
+#define BOARD_RAMPS_DAGOMA      245   // Dagoma F5
 #define BOARD_FYSETC_F6_13      541   // Fysetc F6
 #define BOARD_DUPLICATOR_I3_PLUS 31   // Wanhao Duplicator i3 Plus
 #define BOARD_VORON             441   // VORON Design
 #define BOARD_TRONXY_V3_1_0     442   // Tronxy TRONXY-V3-1.0
+#define BOARD_Z_BOLT_X_SERIES   550   // Z-Bolt X Series
 
 //
 // Other ATmega1280, ATmega2560
@@ -244,6 +246,7 @@
 #define BOARD_GTM32_PRO_VB     1805   // STM32f103VET6 controller
 #define BOARD_MORPHEUS         1806   // STM32F103C8/STM32F103CB Libmaple based stm32f1 controller
 #define BOARD_MKS_ROBIN        1808   // MKS Robin / STM32F103ZET6
+#define BOARD_BIGTREE_SKR_MINI_V1_1 1814 // STM32F103RC
 
 //
 // STM32 ARM Cortex-M4F

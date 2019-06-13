@@ -150,6 +150,9 @@
   #define LCD_CONTRAST_MAX 255
   #define DEFAULT_LCD_CONTRAST 255
   #define LED_COLORS_REDUCE_GREEN
+  #if POWER_SUPPLY > 0 && EITHER(FYSETC_MINI_12864_2_0, FYSETC_MINI_12864_2_1)
+    #define LED_BACKLIGHT_TIMEOUT 10000
+  #endif
 
   // Require LED backlighting enabled
   #if EITHER(FYSETC_MINI_12864_1_2, FYSETC_MINI_12864_2_0)
@@ -405,9 +408,6 @@
   #define E_MANUAL        EXTRUDERS
 #elif ENABLED(PRUSA_MMU2)
   #define E_STEPPERS 1
-  #ifndef TOOLCHANGE_ZRAISE
-    #define TOOLCHANGE_ZRAISE 0
-  #endif
 #endif
 
 // No inactive extruders with MK2_MULTIPLEXER or SWITCHING_NOZZLE
